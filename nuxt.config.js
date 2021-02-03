@@ -1,9 +1,9 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
-  target: "static",
-  router: {
-    base: "/nuxt-blog/"
-  },
+  // target: "static",
+  // router: {
+  //   base: "/nuxt-blog/"
+  // },
   server: {
     port: 8000, // default: 3000
     host: "0.0.0.0" // default: localhost
