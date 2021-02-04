@@ -1,5 +1,12 @@
 <template>
-  <newPostForm :postEdit="post" @submit="onSubmit" />
+  <div class="wrapper-content">
+    <div class="container">
+      <AppButton class="page-button" @click="postDelete">
+        Delete post!
+      </AppButton>
+    </div>
+    <newPostForm :postEdit="post" @submit="onSubmit" />
+  </div>
 </template>
 
 
@@ -31,6 +38,18 @@ export default {
       this.$store.dispatch("editPost", post).then(() => {
         this.$router.push("/admin");
       });
+    },
+    postDelete() {
+      let id = this.post.id;
+      axios
+        .delete(
+          `https://blog-nuxt-a7d2a-default-rtdb.europe-west1.firebasedatabase.app/posts/${id}.json`
+        )
+        .then((res) => {
+          this.$store.dispatch("updatePosts").then(() => {
+            this.$router.push("/admin");
+          });
+        });
     },
   },
 };

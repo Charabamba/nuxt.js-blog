@@ -49,6 +49,20 @@ export const actions = {
       })
       .catch(e => console.log(e));
   },
+  updatePosts({ commit }) {
+    return axios
+      .get(
+        "https://blog-nuxt-a7d2a-default-rtdb.europe-west1.firebasedatabase.app/posts.json"
+      )
+      .then(res => {
+        const postsArray = [];
+        for (let key in res.data) {
+          postsArray.push({ ...res.data[key], id: key });
+        }
+        commit("setPosts", postsArray);
+      })
+      .catch(e => console.log(e));
+  },
   authUser({ commit }, authData) {
     const key = "AIzaSyD2HR2d3xYdUHaHT68TBJXqXw1MulmT1Qo";
     return axios
